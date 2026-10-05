@@ -975,18 +975,13 @@ button {
 
 .map-contact {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
+  grid-template-columns: 1fr;
   gap: 24px;
   align-items: center;
 }
 
 .map-panel {
-  position: relative;
-  min-height: 520px;
-  border-radius: 28px;
-  overflow: hidden;
-  background: linear-gradient(135deg, #ece9e2, #d9d7cf 55%, #e9e4dc);
-  box-shadow: 0 30px 80px rgba(17, 17, 17, 0.06);
+  display: none;
 }
 
 .map-content {
@@ -1052,6 +1047,22 @@ button {
 .contact-card span,
 .contact-card a {
   color: #f7f6f2;
+}
+
+.contact-card span {
+  color: rgba(247, 246, 242, 0.82);
+}
+
+.contact-card a {
+  text-decoration: none;
+  color: #f7f6f2;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.contact-card a:hover,
+.contact-card a:focus-visible {
+  opacity: 0.8;
 }
 
 .contact-card strong {
@@ -1540,6 +1551,20 @@ button {
 .contact-card {
   background: var(--umay-earth);
   border-radius: 4px;
+}
+
+.contact-card li > a {
+  color: var(--umay-ivory);
+  font: inherit;
+}
+
+.contact-card li > strong {
+  color: var(--umay-sand);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 1;
 }
 
 .floating-whatsapp {

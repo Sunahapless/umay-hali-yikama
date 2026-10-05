@@ -468,28 +468,17 @@ function App() {
           </section>
 
           <section className="map-contact container" id="contact">
-            <div className="map-panel reveal">
-              <div className="map-content">
-                <span className="map-pin">◆</span>
-                <div className="map-lines" aria-hidden="true" />
-              </div>
-            </div>
-
             <div className="contact-card reveal">
-              <span className="eyebrow">BİZİ BULUN</span>
+              <span className="eyebrow">BİZE ULAŞIN</span>
               <h2>{company.name}</h2>
               <ul>
                 <li>
-                  <strong>Adres</strong>
-                  <span>{company.address}</span>
-                </li>
-                <li>
-                  <strong>Telefon</strong>
-                  <a href={`tel:${company.phone}`}>{company.phone}</a>
+                  <strong>Instagram</strong>
+                  <a href="https://www.instagram.com/umayhali.38" target="_blank" rel="noreferrer">@umayhali.38</a>
                 </li>
                 <li>
                   <strong>WhatsApp</strong>
-                  <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp'tan Teklif Al</a>
+                  <a href="https://wa.me/+905069723837" target="_blank" rel="noreferrer">+90 506 972 38 37</a>
                 </li>
                 <li>
                   <strong>Çalışma saatleri</strong>
@@ -521,7 +510,7 @@ function App() {
             </div>
 
             <div className="footer-contact">
-              <a href={`tel:${company.phone}`}>{company.phone}</a>
+              <a href={`https://www.instagram.com/${company.instagram}`} target="_blank" rel="noreferrer">@{company.instagram}</a>
               <a href={`https://wa.me/${company.whatsapp}`} target="_blank" rel="noreferrer">WhatsApp'tan Teklif Al</a>
             </div>
           </div>
