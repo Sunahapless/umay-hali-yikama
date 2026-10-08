@@ -66,7 +66,10 @@ function App() {
     const stepField = bookingSteps[currentStep]?.field
     const value = booking[stepField]
 
-    if (!value || (stepField === 'quantity' && Number(value) <= 0)) {
+    if (
+      !value ||
+      (stepField === 'quantity' && (!Number.isFinite(Number(value)) || Number(value) <= 0))
+    ) {
       setBookingError('Lütfen bu alanı doldurun.')
       return
     }
@@ -83,14 +86,32 @@ function App() {
   const submitBooking = (event) => {
     event.preventDefault()
 
-    const isValid = Object.values(booking).every((value) => String(value).trim())
+    const isValid =
+      Object.values(booking).every((value) => String(value).trim()) &&
+      Number.isFinite(Number(booking.quantity)) &&
+      Number(booking.quantity) > 0
     if (!isValid) {
       setBookingError('Lütfen tüm alanları doldurun.')
       setBookingSuccess('')
       return
     }
 
-    setBookingSuccess('Randevunuz başarıyla oluşturuldu. WhatsApp üzerinden teyit gönderilecektir.')
+    const message = [
+      '🔔 YENİ RANDEVU TALEBİ',
+      '',
+      `Telefon: ${booking.phone}`,
+      `Hizmet: ${booking.service}`,
+      `Adet: ${booking.quantity}`,
+      `Randevu Tarihi: ${booking.date}`,
+      `Adres: ${booking.address}`,
+    ].join('\n')
+    const phoneDigits = company.phone.replace(/\D/g, '')
+    const nationalNumber = phoneDigits.replace(/^(?:0090|90|0)/, '')
+    const whatsappNumber = `90${nationalNumber}`
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
+
+    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+    setBookingSuccess('Randevu bilgileriniz WhatsApp üzerinden gönderilmeye hazır.')
     setBookingError('')
   }
 
