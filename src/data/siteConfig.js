@@ -20,7 +20,7 @@ export const company = {
   address: 'Melikgazi Mahallesi, Atatürk Bulvarı No: 18, Kayseri',
   hours: 'Her gün | 08:00 - 00:00',
   instagram: 'umayhali.38',
-  website: 'https://www.umayhaliyikama.com',
+  website: 'https://umayhaliyikamacim.com/',
   stickerImage: '',
   metaTitle: 'Umay Halı Yıkama | Kayseri Premium Halı Yıkama ve Temizlik Hizmeti',
   metaDescription:

@@ -122,7 +122,8 @@ function App() {
   const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: company.name,
+    '@id': `${company.website}#business`,
+    name: 'Umay Halı Yıkama',
     image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1200&q=80',
     telephone: company.phone,
     address: {
@@ -132,7 +133,22 @@ function App() {
       addressRegion: company.district,
       addressCountry: 'TR',
     },
-    openingHours: 'Mo-Sa 09:00-19:00',
+    areaServed: {
+      '@type': 'City',
+      name: company.city,
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Halı ve ev tekstili yıkama hizmetleri',
+      itemListElement: serviceItems.map((service) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: service.title,
+          description: service.description,
+        },
+      })),
+    },
     url: company.website,
     sameAs: [`https://www.instagram.com/${company.instagram.replace('@', '')}`],
   }
@@ -202,8 +218,8 @@ function App() {
               <div className="hero-copy reveal">
                 <span className="eyebrow">KAYSERİ • PREMIUM HALI BAKIMI</span>
                 <h1>
-                  Temizliğin ötesinde,
-                  <span>Umay dokunuşu.</span>
+                  Kayseri'de halı yıkama,
+                  <span>Umay dokunuşuyla.</span>
                 </h1>
                 <p>
                   Halıdan koltuğa, perdeden yorgana kadar yaşam alanlarınızdaki tekstiller için özenli ve profesyonel temizlik hizmeti.
@@ -254,7 +270,7 @@ function App() {
               {serviceItems.map((service) => (
                 <article key={service.id} className="service-card">
                   <div className="service-card-image">
-                    <img src={service.image} alt={`${service.title} hizmeti`} loading="lazy" />
+                    <img src={service.image} alt={service.description} loading="lazy" />
                     <span className="service-number">{service.number}</span>
                   </div>
                   <div className="service-card-copy">
@@ -276,11 +292,11 @@ function App() {
             <div className="compare-static reveal">
               <div className="compare-grid" aria-label="Önce ve sonra halı karşılaştırması">
                 <div className="compare-panel compare-before-panel">
-                  <img src={beforeImage} alt="Önce halı" />
+                  <img src={beforeImage} alt="Temizlik öncesi halı görünümü" />
                   <span className="compare-badge compare-before-badge">ÖNCESİ</span>
                 </div>
                 <div className="compare-panel compare-after-panel">
-                  <img src={afterImage} alt="Sonra halı" />
+                  <img src={afterImage} alt="Temizlik sonrası halı görünümü" />
                   <span className="compare-badge compare-after-badge">SONRASI</span>
                 </div>
               </div>
