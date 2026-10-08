@@ -99,9 +99,9 @@ function App() {
     const message = [
       '🔔 YENİ RANDEVU TALEBİ',
       '',
-      `Telefon: ${booking.phone}`,
       `Hizmet: ${booking.service}`,
       `Adet: ${booking.quantity}`,
+      `Telefon: ${booking.phone}`,
       `Randevu Tarihi: ${booking.date}`,
       `Adres: ${booking.address}`,
     ].join('\n')
@@ -110,7 +110,11 @@ function App() {
     const whatsappNumber = `90${nationalNumber}`
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`
 
-    window.open(whatsappUrl, '_blank', 'noopener,noreferrer')
+    const newWindow = window.open(whatsappUrl, '_blank')
+    if (!newWindow) {
+      window.location.href = whatsappUrl
+    }
+
     setBookingSuccess('Randevu bilgileriniz WhatsApp üzerinden gönderilmeye hazır.')
     setBookingError('')
   }
